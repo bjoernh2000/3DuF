@@ -111,7 +111,7 @@ export default class GradientGenerator extends Template {
         this.__mint = "GRADIENT GENERATOR";
     }
 
-    render2D(params, key) {
+    render2D(params, key="FLOW") {
         let position = params["position"];
         let bendSpacing = params["bendSpacing"];
         let numBends = params["numberOfBends"];
@@ -224,7 +224,7 @@ export default class GradientGenerator extends Template {
     }
 
     render2DTarget(key, params) {
-        let render = this.render2D(params, key);
+        let render = this.render2D(params, key="FLOW");
         render.fillColor.alpha = 0.5;
         return render;
     }

@@ -198,7 +198,7 @@ export default class Mux extends Template {
         return treepath.rotate(rotation, px, py);
     }
 
-    render2D(params, key) {
+    render2D(params, key="FLOW") {
         if (key == "FLOW") {
             return this.__drawFlow(params);
         } else if (key == "CONTROL") {

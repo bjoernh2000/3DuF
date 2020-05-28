@@ -95,7 +95,7 @@ export default class RotaryMixer extends Template {
         this.__mint = "ROTARY MIXER";
     }
 
-    render2D(params, key = null) {
+    render2D(params, key="FLOW") {
         if (key == "FLOW") {
             return this.__renderFlow(params);
         } else if (key == "CONTROL") {

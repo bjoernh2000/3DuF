@@ -388,6 +388,9 @@ export default class Component {
             definition = CustomComponent.defaultParameterDefinitions();
         } else {
             definition = Registry.featureSet.getDefinition(entity);
+            if(definition === null){
+                throw Error("Could not find definition for type: "+ entity);
+            }
         }
 
         // console.log(definition);

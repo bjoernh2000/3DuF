@@ -88,7 +88,7 @@ export default class Pump3D extends Template {
         this.__mint = "PUMP3D";
     }
 
-    render2D(params, key) {
+    render2D(params, key="FLOW") {
         if (key == "FLOW") {
             return this.__drawFlow(params);
         } else if (key == "CONTROL") {

@@ -121,7 +121,7 @@ export default class Valve3D extends Template {
         return circ;
     }
 
-    render2D(params, key) {
+    render2D(params, key="FLOW") {
         if (key == "FLOW") {
             return this.__drawFlow(params);
         } else if (key == "CONTROL") {
