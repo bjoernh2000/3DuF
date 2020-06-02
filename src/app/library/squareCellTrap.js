@@ -15,35 +15,40 @@ export default class SquareCellTrap extends Template {
             channelWidth: "Float",
             chamberWidth: "Float",
             chamberLength: "Float",
-            height: "Float"
+            height: "Float",
+            rotation: "Float"
         };
 
         this.__defaults = {
             chamberLength: 1.2 * 1000,
             channelWidth: 0.41 * 1000,
             chamberWidth: 1.23 * 1000,
-            height: 250
+            height: 250,
+            rotation: 0
         };
 
         this.__units = {
             chamberLength: "&mu;m",
             channelWidth: "&mu;m",
             chamberWidth: "&mu;m",
-            height: "&mu;m"
+            height: "&mu;m",
+            rotation: "&deg;"
         };
 
         this.__minimum = {
             chamberLength: 30,
             cannelWidth: 10,
             chamberWidth: 30,
-            height: 10
+            height: 10,
+            rotation: 0
         };
 
         this.__maximum = {
             chamberLength: 6000,
             channelWidth: 2000,
             chamberWidth: 6000,
-            height: 1200
+            height: 1200,
+            rotation: 360
         };
 
         this.__featureParams = {
@@ -51,14 +56,16 @@ export default class SquareCellTrap extends Template {
             chamberWidth: "chamberWidth",
             chamberLength: "chamberLength",
             channelWidth: "channelWidth",
-            height: "height"
+            height: "height",
+            rotation: "rotation"
         };
 
         this.__targetParams = {
             chamberWidth: "chamberWidth",
             chamberLength: "chamberLength",
             channelWidth: "feedingChannelWidth",
-            height: "height"
+            height: "height",
+            rotation: "rotation"
         };
 
         this.__placementTool = "CellPositionTool";
@@ -160,7 +167,7 @@ export default class SquareCellTrap extends Template {
         chamberList.addChild(channels);
         chamberList.fillColor = color;
         let center = new paper.Point(position[0], position[1]);
-        return chamberList;
+        return chamberList.rotate(rotation, center);
     }
 
     __drawCell(params) {
@@ -168,6 +175,7 @@ export default class SquareCellTrap extends Template {
         let chamberLength = params["chamberLength"];
         let chamberWidth = params["chamberWidth"];
         let feedingChannelWidth = params["channelWidth"];
+        let rotation = params["rotation"];
         let color = params["color"];
         let x = position[0];
         let y = position[1];
@@ -176,6 +184,6 @@ export default class SquareCellTrap extends Template {
         //finish the drawing code
         chamberList.fillColor = color;
         let center = new paper.Point(x, y);
-        return chamberList;
+        return chamberList.rotate(rotation, center);
     }
 }

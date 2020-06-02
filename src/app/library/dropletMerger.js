@@ -54,7 +54,7 @@ export default class DropletMerger extends Template {
             inputWidth2:10000,
             outputWidth:10000,
             stabilizationLength:500000,
-            rotation:0,
+            rotation: 360,
             height: 10000
         };
 
@@ -91,7 +91,7 @@ export default class DropletMerger extends Template {
         let channelWidth = params["channelWidth"];
         let bendLength = params["bendLength"];
         let bendSpacing = params["bendSpacing"];
-        let orientation = params["orientation"];
+        let rotation = params["rotation"];
         let numberOfBends = params["numberOfBends"];
 
         let ports = [];
@@ -107,7 +107,7 @@ export default class DropletMerger extends Template {
         let channelWidth = params["channelWidth"];
         let bendLength = params["bendLength"];
         let bendSpacing = params["bendSpacing"];
-        let orientation = params["orientation"];
+        let rotation = params["rotation"];
         let numBends = params["numberOfBends"];
         let x = params["position"][0];
         let y = params["position"][1];
@@ -134,11 +134,8 @@ export default class DropletMerger extends Template {
             }
         }
 
-        if (orientation === "H") {
-            serp.rotate(270, new paper.Point(x, y));
-        }
         serp.fillColor = color;
-        return serp;
+        return serp.rotate(rotation, new paper.Point(x, y));;
     }
 
     render2DTarget(key, params) {

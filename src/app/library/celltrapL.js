@@ -14,7 +14,7 @@ export default class CellTrapL extends Template {
         this.__heritable = {
             chamberLength: "Float",
             feedingChannelWidth: "Float",
-            orientation: "String",
+            rotation: "Float",
             chamberWidth: "Float",
             numberOfChambers: "Float",
             chamberSpacing: "Float",
@@ -24,7 +24,7 @@ export default class CellTrapL extends Template {
         this.__defaults = {
             chamberLength: 1.2 * 1000,
             feedingChannelWidth: 0.41 * 1000,
-            orientation: "H",
+            rotation: 0,
             chamberWidth: 1.23 * 1000,
             numberOfChambers: 6,
             chamberSpacing: 2.46 * 1000,
@@ -34,7 +34,7 @@ export default class CellTrapL extends Template {
         this.__units = {
             chamberLength: "&mu;m",
             feedingChannelWidth: "&mu;m",
-            orientation: "",
+            rotation: "&deg;",
             chamberWidth: "&mu;m",
             numberOfChambers: "",
             chamberSpacing: "&mu;m",
@@ -47,7 +47,8 @@ export default class CellTrapL extends Template {
             chamberWidth: 30,
             numberOfChambers: 1,
             chamberSpacing: 60,
-            height: 10
+            height: 10,
+            rotation: 0
         };
 
         this.__maximum = {
@@ -56,12 +57,13 @@ export default class CellTrapL extends Template {
             chamberWidth: 6000,
             numberOfChambers: 10,
             chamberSpacing: 12 * 1000,
-            height: 1200
+            height: 1200,
+            rotation: 360
         };
 
         this.__featureParams = {
             position: "position",
-            orientation: "orientation",
+            rotation: "rotation",
             chamberWidth: "chamberWidth",
             chamberLength: "chamberLength",
             numberOfChambers: "numberOfChambers",
@@ -71,7 +73,7 @@ export default class CellTrapL extends Template {
         };
 
         this.__targetParams = {
-            orientation: "orientation",
+            rotation: "rotation",
             chamberWidth: "chamberWidth",
             chamberLength: "chamberLength",
             numberOfChambers: "numberOfChambers",
@@ -100,7 +102,7 @@ export default class CellTrapL extends Template {
     }
 
     render2DTarget(key, params) {
-        let orientation = params["orientation"];
+        let rotation = params["rotation"];
         let position = params["position"];
         let chamberLength = params["chamberLength"];
         let numChambers = params["numberOfChambers"];
@@ -116,49 +118,46 @@ export default class CellTrapL extends Template {
         let traps;
         let channels;
 
-        if (orientation == "V") {
-            for (let i = 0; i < numChambers / 2; i++) {
-                rec = paper.Path.Rectangle({
-                    size: [2 * chamberLength + feedingChannelWidth, chamberWidth],
-                    point: [x, y + i * (chamberWidth + chamberSpacing) + chamberSpacing],
-                    fillColor: color,
-                    strokeWidth: 0
-                });
-                chamberList.push(rec);
-            }
-            channels = paper.Path.Rectangle({
-                point: [x + chamberLength, y],
-                size: [feedingChannelWidth, (numChambers / 2) * (chamberWidth + chamberSpacing) + chamberSpacing],
+        for (let i = 0; i < numChambers / 2; i++) {
+            rec = paper.Path.Rectangle({
+                size: [2 * chamberLength + feedingChannelWidth, chamberWidth],
+                point: [x, y + i * (chamberWidth + chamberSpacing) + chamberSpacing],
                 fillColor: color,
                 strokeWidth: 0
             });
-            chamberList.push(channels);
-        } else {
-            for (let i = 0; i < numChambers / 2; i++) {
-                rec = paper.Path.Rectangle({
-                    size: [chamberWidth, 2 * chamberLength + feedingChannelWidth],
-                    point: [x + i * (chamberWidth + chamberSpacing) + chamberSpacing, y],
-                    fillColor: color,
-                    strokeWidth: 0
-                });
-                chamberList.push(rec);
-            }
-            channels = paper.Path.Rectangle({
-                point: [x, y + chamberLength],
-                size: [(numChambers / 2) * (chamberWidth + chamberSpacing) + chamberSpacing, feedingChannelWidth],
-                fillColor: color,
-                strokeWidth: 0
-            });
-            chamberList.push(channels);
+            chamberList.push(rec);
         }
+        channels = paper.Path.Rectangle({
+            point: [x + chamberLength, y],
+            size: [feedingChannelWidth, (numChambers / 2) * (chamberWidth + chamberSpacing) + chamberSpacing],
+            fillColor: color,
+            strokeWidth: 0
+        });
+        chamberList.push(channels);
+        for (let i = 0; i < numChambers / 2; i++) {
+            rec = paper.Path.Rectangle({
+                size: [chamberWidth, 2 * chamberLength + feedingChannelWidth],
+                point: [x + i * (chamberWidth + chamberSpacing) + chamberSpacing, y],
+                fillColor: color,
+                strokeWidth: 0
+            });
+            chamberList.push(rec);
+        }
+        channels = paper.Path.Rectangle({
+            point: [x, y + chamberLength],
+            size: [(numChambers / 2) * (chamberWidth + chamberSpacing) + chamberSpacing, feedingChannelWidth],
+            fillColor: color,
+            strokeWidth: 0
+        });
+        chamberList.push(channels);
         traps = new paper.CompoundPath(chamberList);
         traps.fillColor = color;
         traps.fillColor.alpha = 0.5;
-        return traps;
+        return traps.rotate(rotation, new paper.Point(x, y));
     }
 
     __drawFlow(params) {
-        let orientation = params["orientation"];
+        let rotation = params["rotation"];
         let position = params["position"];
         let chamberLength = params["chamberLength"];
         let numChambers = params["numberOfChambers"];
@@ -201,7 +200,7 @@ export default class CellTrapL extends Template {
     }
 
     __drawCell(params) {
-        let orientation = params["orientation"];
+        let rotation = params["rotation"];
         let position = params["position"];
         let chamberLength = params["chamberLength"];
         let numChambers = params["numberOfChambers"];

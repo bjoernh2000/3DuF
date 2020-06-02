@@ -55,7 +55,7 @@ export default class Pump3D extends Template {
             valveRadius: 0.2 * 10000,
             height: 1.2 * 1000,
             gap: 0.1 * 10000,
-            rotation: 180,
+            rotation: 360,
             spacing: 10000,
             flowChannelWidth: 10000
         };

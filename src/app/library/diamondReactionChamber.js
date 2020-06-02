@@ -12,7 +12,7 @@ export default class DiamondReactionChamber extends Template {
         };
 
         this.__heritable = {
-            orientation: "String",
+            rotation: "Float",
             channelWidth: "Float",
             length: "Float",
             width: "Float",
@@ -20,7 +20,7 @@ export default class DiamondReactionChamber extends Template {
         };
 
         this.__defaults = {
-            orientation: "V",
+            rotation: 0,
             channelWidth: 0.8 * 1000,
             width: 1.23 * 1000,
             length: 4.92 * 1000,
@@ -28,7 +28,7 @@ export default class DiamondReactionChamber extends Template {
         };
 
         this.__units = {
-            orientation: "",
+            rotation: "&deg;",
             channelWidth: "&mu;m",
             length: "&mu;m",
             width: "&mu;m",
@@ -39,19 +39,21 @@ export default class DiamondReactionChamber extends Template {
             channelWidth: 10,
             width: 30,
             length: 120,
-            height: 10
+            height: 10,
+            rotation: 0
         };
 
         this.__maximum = {
             channelWidth: 2000,
             width: 6000,
             length: 24 * 1000,
-            height: 1200
+            height: 1200,
+            rotation: 360
         };
 
         this.__featureParams = {
             position: "position",
-            orientation: "orientation",
+            rotation: "rotation",
             channelWidth: "channelWidth",
             length: "length",
             width: "width"
@@ -61,7 +63,7 @@ export default class DiamondReactionChamber extends Template {
             channelWidth: "channelWidth",
             length: "length",
             width: "width",
-            orientation: "orientation"
+            rotation: "rotation"
         };
 
         this.__placementTool = "componentPositionTool";
@@ -82,7 +84,7 @@ export default class DiamondReactionChamber extends Template {
         let cw = params["channelWidth"];
         let l = params["length"];
         let w = params["width"];
-        let orientation = params["orientation"];
+        let rotation = params["rotation"];
         let color = params["color"];
         let p0, p1, p2, p3, p4, p5;
         if (orientation == "H") {
@@ -109,7 +111,7 @@ export default class DiamondReactionChamber extends Template {
         hex.add(new paper.Point(p5));
         hex.closed = true;
         hex.fillColor = color;
-        return hex;
+        return hex.rotate(rotation, px, py);
     }
 
     render2DTarget(key, params) {
