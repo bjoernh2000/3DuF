@@ -174,29 +174,18 @@ export default class CellTrapL extends Template {
         let rec;
         let traps;
         let channels;
-        if (orientation == "V") {
-            let startPoint = new paper.Point(x + chamberLength, y);
-            channels = new paper.Path.Rectangle({
-                point: startPoint,
-                size: [feedingChannelWidth, (numChambers / 2) * (chamberWidth + chamberSpacing) + chamberSpacing],
-                fillColor: color,
-                strokeWidth: 0
-            });
-            chamberList.addChild(channels);
-        } else {
-            let startPoint = new paper.Point(x, y + chamberLength);
-            channels = new paper.Path.Rectangle({
-                point: startPoint,
-                size: [(numChambers / 2) * (chamberWidth + chamberSpacing) + chamberSpacing, feedingChannelWidth],
-                fillColor: color,
-                strokeWidth: 0
-            });
-            chamberList.addChild(channels);
-        }
+        let startPoint = new paper.Point(x + chamberLength, y);
+        channels = new paper.Path.Rectangle({
+            point: startPoint,
+            size: [feedingChannelWidth, (numChambers / 2) * (chamberWidth + chamberSpacing) + chamberSpacing],
+            fillColor: color,
+            strokeWidth: 0
+        });
+        chamberList.addChild(channels);
         traps = new paper.CompoundPath(chamberList);
         traps.fillColor = color;
         let center = new paper.Point(position[0], position[1]);
-        return traps;
+        return traps.rotate(rotation, center);
     }
 
     __drawCell(params) {
@@ -212,31 +201,18 @@ export default class CellTrapL extends Template {
         let y = position[1];
         let chamberList = new paper.CompoundPath();
         let rec;
-        if (orientation == "V") {
-            for (let i = 0; i < numChambers / 2; i++) {
-                let startPoint = new paper.Point(x, y + i * (chamberWidth + chamberSpacing) + chamberSpacing);
-                rec = new paper.Path.Rectangle({
-                    size: [2 * chamberLength + feedingChannelWidth, chamberWidth],
-                    point: startPoint,
-                    fillColor: color,
-                    strokeWidth: 0
-                });
-                chamberList.addChild(rec);
-            }
-        } else {
-            for (let i = 0; i < numChambers / 2; i++) {
-                let startPoint = new paper.Point(x + i * (chamberWidth + chamberSpacing) + chamberSpacing, y);
-                rec = paper.Path.Rectangle({
-                    size: [chamberWidth, 2 * chamberLength + feedingChannelWidth],
-                    point: startPoint,
-                    fillColor: color,
-                    strokeWidth: 0
-                });
-                chamberList.addChild(rec);
-            }
+        for (let i = 0; i < numChambers / 2; i++) {
+            let startPoint = new paper.Point(x, y + i * (chamberWidth + chamberSpacing) + chamberSpacing);
+            rec = new paper.Path.Rectangle({
+                size: [2 * chamberLength + feedingChannelWidth, chamberWidth],
+                point: startPoint,
+                fillColor: color,
+                strokeWidth: 0
+            });
+            chamberList.addChild(rec);
         }
         chamberList.fillColor = color;
         let center = new paper.Point(x, y);
-        return chamberList;
+        return chamberList.rotate(rotation, center);
     }
 }
