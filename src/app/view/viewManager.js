@@ -49,6 +49,7 @@ import Feature from "../core/feature";
 import Layer from "../core/layer";
 import Component from "../core/component";
 import DAMPFabricationDialog from "./ui/dampFabricationDialog";
+import ParallelFabricationDialog from "./ui/parallelFabricationDialog";
 
 /**
  * View manager class
@@ -80,6 +81,7 @@ export default class ViewManager {
         this.__currentDevice = null;
         this._introDialog = new IntroDialog();
         this._dampFabricateDialog = new DAMPFabricationDialog();
+        this._parallelFabricateDialog = new ParallelFabricationDialog();
         let reference = this;
         this.updateQueue = new SimpleQueue(function() {
             reference.view.refresh();
