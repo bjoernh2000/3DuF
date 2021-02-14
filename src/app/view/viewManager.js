@@ -81,7 +81,7 @@ export default class ViewManager {
         this.__currentDevice = null;
         this._introDialog = new IntroDialog();
         this._dampFabricateDialog = new DAMPFabricationDialog();
-        this._parallelFabricateDialog = new ParallelFabricationDialog();
+        this._parallelFabricateDialog = new ParallelFabricationDialog(this);
         let reference = this;
         this.updateQueue = new SimpleQueue(function() {
             reference.view.refresh();
