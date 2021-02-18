@@ -65,8 +65,10 @@ export default class ParallelFabricateDialog {
         }
             
 
-        this.__compatibility.onclick = function() {  // this depends on dimensions and parameters required by parallel fluidics
-
+        this.__compatibility.onclick = function() {
+            let components = Registry.currentDevice.getComponents();
+            let connections = Registry.currentDevice.getConnections();
+            verified = ref.verifyCompatibility(components,connections);
         }
 
         this.__dialog.querySelector(".close").addEventListener("click", function() {
@@ -88,4 +90,29 @@ export default class ParallelFabricateDialog {
         return content;
     }
 
+    verifyCompatibility(components, connections) {  // loop through components and connections
+        for (let i=0;i<components.length();i++) {  // each component
+            let component = components[i];
+            console.log(component);
+            let params = component.getParams();
+            for (let key in params.parameters) {  // each parameter
+                if (params.parameters[key] != undefined) {
+                    // Todo: Finish logic
+                    console.log(params.parameters[key]);
+                }
+            }
+        }
+
+        for (let i=0;i<connections.length();i++) {  // each connection
+            let connection = connections[i];
+            let params = connection.getParams();
+            for (let key in params.parameters) {  // each parameter
+                if (params.parameters[key] != undefined) {
+                    // Todo: Finish logic
+                    console.log(params.parameters[key]);
+                }
+            }
+        }
+        return true;
+    }
 }
