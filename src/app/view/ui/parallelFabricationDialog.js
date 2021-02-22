@@ -68,7 +68,7 @@ export default class ParallelFabricateDialog {
         this.__compatibility.onclick = function() {
             let components = Registry.currentDevice.getComponents();
             let connections = Registry.currentDevice.getConnections();
-            verified = ref.verifyCompatibility(components,connections);
+            let verified = ref.verifyCompatibility(components,connections);
         }
 
         this.__dialog.querySelector(".close").addEventListener("click", function() {
@@ -91,7 +91,7 @@ export default class ParallelFabricateDialog {
     }
 
     verifyCompatibility(components, connections) {  // loop through components and connections
-        for (let i=0;i<components.length();i++) {  // each component
+        for (let i=0;i<components.length;i++) {  // each component
             let component = components[i];
             console.log(component);
             let params = component.getParams();
@@ -103,7 +103,7 @@ export default class ParallelFabricateDialog {
             }
         }
 
-        for (let i=0;i<connections.length();i++) {  // each connection
+        for (let i=0;i<connections.length;i++) {  // each connection
             let connection = connections[i];
             let params = connection.getParams();
             for (let key in params.parameters) {  // each parameter
