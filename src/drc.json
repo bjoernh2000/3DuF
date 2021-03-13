@@ -1,0 +1,232 @@
+{
+   "MIXER": [
+      {
+         "Design Rule": "Channel Width",
+         "Parameter": "channelWidth",
+         "Min": "50",
+         "Max": "5000",
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Internal Corner Radius",
+         "Parameter": null,
+         "Min": null,
+         "Max": null,
+         "Comments": "Need a new parameter for corner radius"
+      },
+      {
+         "Design Rule": "Distance between channels",
+         "Parameter": "bendSpacing",
+         "Min": "500",
+         "Max": null,
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Feature Distance from Edge",
+         "Parameter": "position",
+         "Min": "5000",
+         "Max": null,
+         "Comments": "Get the Device edge and feature position difference"
+      }
+   ],
+   "CHANNEL": [
+      {
+         "Design Rule": "Channel Width",
+         "Parameter": "channelWidth",
+         "Min": "50",
+         "Max": "5000",
+         "Comments": "Connection, Channel, Rounded Channel all same __mint type"
+      },
+      {
+         "Design Rule": "Channel Height",
+         "Parameter": "height",
+         "Min": "30",
+         "Max": "500",
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Aspect Ratio",
+         "Parameter": null,
+         "Min": "1:5",
+         "Max": "2:1",
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Feature Distance from Edge",
+         "Parameter": "position",
+         "Min": "5000",
+         "Max": null,
+         "Comments": ""
+      }
+   ],
+   "TRANSITION": [
+      {
+         "Design Rule": "Channel Width",
+         "Parameter": "cw1",
+         "Min": "50",
+         "Max": "5000",
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Channel Width",
+         "Parameter": "cw2",
+         "Min": "50",
+         "Max": "5000",
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Feature Distance from Edge",
+         "Parameter": "position",
+         "Min": "5",
+         "Max": null,
+         "Comments": ""
+      }
+   ],
+   "GRADIENT GENERATOR": [
+      {
+         "Design Rule": "Channel Width",
+         "Parameter": "channelWidth",
+         "Min": "50",
+         "Max": "5000",
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Distance between channels",
+         "Parameter": "bendSpacing",
+         "Min": "500",
+         "Max": null,
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Feature Distance from Edge",
+         "Parameter": "position",
+         "Min": "5000",
+         "Max": null,
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Aspect Ratio",
+         "Parameter": null,
+         "Min": "1:5",
+         "Max": "2:1",
+         "Comments": ""
+      }
+   ],
+   "CURVED MIXER": [
+      {
+         "Design Rule": "Channel Width",
+         "Parameter": "channelWidth",
+         "Min": "50",
+         "Max": "5000",
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Internal Corner Radius",
+         "Parameter": null,
+         "Min": null,
+         "Max": null,
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Distance between channels",
+         "Parameter": "bendSpacing",
+         "Min": "500",
+         "Max": null,
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Feature Distance from Edge",
+         "Parameter": "position",
+         "Min": "5000",
+         "Max": null,
+         "Comments": ""
+      }
+   ],
+   "DIAMOND REACTION CHAMBER": [
+      {
+         "Design Rule": "Channel Width",
+         "Parameter": "channelWidth",
+         "Min": "50",
+         "Max": "5000",
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Feature Distance from Edge",
+         "Parameter": "position",
+         "Min": "5000",
+         "Max": null,
+         "Comments": ""
+      }
+   ],
+   "REACTION CHAMBER": [
+      {
+         "Design Rule": "Channel Width",
+         "Parameter": "width",
+         "Min": "50",
+         "Max": "5000",
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Channel Height",
+         "Parameter": "height",
+         "Min": "30",
+         "Max": "500",
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Feature Distance from Edge",
+         "Parameter": "position",
+         "Min": "5000",
+         "Max": null,
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Internal Corner Radius",
+         "Parameter": "cornerRadius",
+         "Min": "50",
+         "Max": null,
+         "Comments": ""
+      }
+   ],
+   "NOZZLE DROPLET GENERATOR": [
+      {
+         "Design Rule": "Channel Width",
+         "Parameter": "outputWidth",
+         "Min": "50",
+         "Max": "5000",
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Feature Distance from Edge",
+         "Parameter": "position",
+         "Min": "5000",
+         "Max": null,
+         "Comments": ""
+      }
+   ],
+   "PORT": [
+      {
+         "Design Rule": "Feature Distance from Edge",
+         "Parameter": "position",
+         "Min": "5000",
+         "Max": null,
+         "Comments": ""
+      }
+   ],
+   "VIA": [
+      {
+         "Design Rule": "Feature Distance from Edge",
+         "Parameter": "position",
+         "Min": "5000",
+         "Max": null,
+         "Comments": ""
+      },
+      {
+         "Design Rule": "Via size for connectors",
+         "Parameter": "radius",
+         "Min": "1250",
+         "Max": "1250",
+         "Comments": ""
+      }
+   ]
+}

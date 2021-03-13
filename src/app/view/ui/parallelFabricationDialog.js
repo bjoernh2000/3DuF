@@ -2,6 +2,8 @@ import dialogPolyfill from "dialog-polyfill";
 import * as Registry from "../../core/registry";
 import JSZip from "jszip";
 import CNCGenerator from "../../manufacturing/cncGenerator";
+import Papa from 'papaparse';
+import csvString from "../../../drc.js";
 import axios from 'axios';
 
 export default class ParallelFabricateDialog {
@@ -31,7 +33,8 @@ export default class ParallelFabricateDialog {
             let email = document.getElementById("parallel_fabricate_dialog_email_field").value;
             let address = document.getElementById("parallel_fabricate_dialog_address_field").value;
 
-            let endpoint = "http://localhost:5000/endpoint";
+            let endpoint = "https://us-central1-parallel-fluidics.cloudfunctions.net/threeDuFUpload";
+            // let endpoint = "http://127.0.0.1:5000/endpoint";
 
             console.log("SVG for axios post request");
             cncGenerator.setDevice(registryref.currentDevice);
@@ -91,16 +94,36 @@ export default class ParallelFabricateDialog {
     }
 
     verifyCompatibility(components, connections) {  // loop through components and connections
+    
+        let results = Papa.parse(csvString, {header:true, dynamicTyping:true}).data
+        console.log(results);
         for (let i=0;i<components.length;i++) {  // each component
             let component = components[i];
             console.log(component);
             let params = component.getParams();
-            for (let key in params.parameters) {  // each parameter
-                if (params.parameters[key] != undefined) {
-                    // Todo: Finish logic
-                    console.log(params.parameters[key]);
+            for (let j=0;j<results.length;j++) {
+                if (results[i]["Component Type"] == component.__entity) {  // if component type is one of the rest
+                    let parameterName = results[i]["Parameter"];
+                    if (results[i]["Min"] != "NULL") {
+                        if (params.parameter[results[i]["Parameter"]] < results[i]["Min"]) {
+                            // give error
+                        }
+                    }
+                    if (results[i]["Max"] != "NULL") {
+                        if (params.parameter[results[i]["Parameter"]] < results[i]["Min"]) {
+                            // give error
+                        }
+                    }
                 }
             }
+                // for (let key in params.parameters) {  // each parameter
+                //     if (params.parameters[key] != undefined) {
+                //         // Todo: Finish logic
+                //         if (params.parameters[key]) {
+
+                //         }
+                //     }
+            
         }
 
         for (let i=0;i<connections.length;i++) {  // each connection
